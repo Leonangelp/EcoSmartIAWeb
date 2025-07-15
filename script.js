@@ -10,7 +10,9 @@ async function init() {
   await webcam.setup();
   await webcam.play();
   window.requestAnimationFrame(loop);
-  document.getElementById("webcam").appendChild(webcam.canvas);
+  document.getElementById("webcam-container").appendChild(webcam.canvas);
+webcam.canvas.style.borderRadius = "10px";
+webcam.canvas.style.marginBottom = "15px";
 }
 
 async function loop() {
@@ -52,7 +54,6 @@ function handleUpload(input) {
   if (file) {
     img.src = URL.createObjectURL(file);
     img.onload = () => {
-      document.getElementById("webcam").style.display = "none";
       img.style.display = "block";
       predict(img);
     };
